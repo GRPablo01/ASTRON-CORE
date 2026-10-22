@@ -61,6 +61,11 @@ Règles :
 Une confirmation est requise pour toute écriture non préalablement autorisée
 par une politique explicite et limitée.
 
+Dans la première version, aucune politique de confirmation ne suffit à activer
+une capacité d'écriture : celle-ci reste désactivée par défaut. Son activation
+ultérieure exige l'implémentation et la validation préalable des contrôles
+backend, des permissions et des tests de sécurité correspondants.
+
 ### Niveau R3 — Action sensible
 
 Exemples :

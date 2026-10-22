@@ -148,9 +148,10 @@ Chaque demande devra pouvoir être associée, selon le périmètre retenu, à :
 Les secrets, jetons d'accès et contenus sensibles ne doivent pas être
 inscrits en clair dans les journaux.
 
-## 7. Objectifs mesurables à préciser
+## 7. Objectifs mesurables et critères de validation
 
-Les critères détaillés seront définis en 0.4. Ils devront notamment vérifier :
+Les critères détaillés sont définis dans le document
+`PHASE-0.4-CRITERES-REUSSITE.md`. Ils doivent notamment permettre de vérifier :
 - le suivi d'une demande de bout en bout ;
 - le refus effectif d'une action non autorisée ;
 - l'attente d'une confirmation lorsqu'elle est obligatoire ;

@@ -53,6 +53,12 @@ son exécution.
 
 ## 4. Création et modification de fichiers
 
+Les capacités décrites dans cette section définissent la politique cible.
+Elles ne sont pas activées par défaut dans la première version : celle-ci
+reste limitée à la lecture et à l'analyse des données explicitement autorisées.
+Toute activation ultérieure dépendra des contrôles backend, des permissions,
+des confirmations humaines adaptées au risque et des tests définis en 0.3 et 0.4.
+
 ### Autorisées sous conditions
 
 - Créer des fichiers dans un espace de travail autorisé.
