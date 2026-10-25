@@ -1,0 +1,26 @@
+# Dépendances
+node_modules/
+
+# Variables d'environnement et secrets
+.env
+.env.*
+!.env.example
+
+# Builds et sorties générées
+dist/
+build/
+coverage/
+.angular/
+.turbo/
+
+# Journaux et fichiers temporaires
+*.log
+.DS_Store
+
+# Sauvegardes locales
+*.bak
+*.bak-*
+*.avant-cloture-*.md
+
+# Fichiers de sauvegarde temporaires
+*.save

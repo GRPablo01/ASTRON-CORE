@@ -1,0 +1,212 @@
+<div class="dashboard">
+  <aside class="sidebar">
+    <a class="brand" href="/" aria-label="ASTRON CORE accueil">
+      <span class="brand-mark">A</span>
+      <span>
+        <strong>ASTRON CORE</strong>
+        <small>LOCAL INTELLIGENCE</small>
+      </span>
+    </a>
+
+    <div class="nav-label">ESPACE DE TRAVAIL</div>
+    <nav aria-label="Navigation principale">
+      <a class="nav-item active" href="#overview">
+        <span class="nav-icon">◫</span>
+        Vue d’ensemble
+      </a>
+      <a class="nav-item" href="#services">
+        <span class="nav-icon">⌘</span>
+        Services
+      </a>
+      <a class="nav-item" href="#configuration">
+        <span class="nav-icon">⚙</span>
+        Configuration
+      </a>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <span class="status-dot" [class.online]="apiStatus() === 'online'"></span>
+      <div>
+        <strong>Environnement local</strong>
+        <small>Machine de développement</small>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-content" id="overview">
+    <header class="topbar">
+      <div class="breadcrumb">ASTRON CORE <span>/</span> Vue d’ensemble</div>
+      <span class="environment-badge">
+        <span class="status-dot" [class.online]="apiStatus() === 'online'"></span>
+        Développement local
+      </span>
+    </header>
+
+    <section class="page-heading">
+      <div>
+        <p class="eyebrow">CENTRE DE CONTRÔLE</p>
+        <h1>Vue d’ensemble</h1>
+        <p class="subtitle">
+          Surveille l’état de ton environnement ASTRON CORE.
+        </p>
+      </div>
+
+      <button
+        type="button"
+        class="refresh-button"
+        (click)="checkApi()"
+        [disabled]="apiStatus() === 'loading'"
+      >
+        <span aria-hidden="true">↻</span>
+        {{ apiStatus() === 'loading' ? 'Vérification…' : 'Actualiser' }}
+      </button>
+    </section>
+
+    <section class="welcome-panel">
+      <div class="welcome-copy">
+        <span class="welcome-tag">SYSTÈME LOCAL</span>
+        <h2>Ton espace de contrôle.</h2>
+        <p>
+          Une vue centralisée pour suivre les services et préparer les prochaines
+          intégrations de ton environnement intelligent.
+        </p>
+      </div>
+      <div class="orb" aria-hidden="true">
+        <div class="orb-core"></div>
+      </div>
+      <div class="welcome-grid" aria-hidden="true"></div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">SUPERVISION</p>
+          <h2>État des services</h2>
+        </div>
+        <span class="updated-label">
+          @if (lastChecked()) {
+            Vérifié à {{ lastChecked() }}
+          } @else {
+            En attente de vérification
+          }
+        </span>
+      </div>
+
+      <div class="service-grid">
+        <article class="service-card">
+          <div class="card-top">
+            <span class="service-icon api-icon">API</span>
+            @if (apiStatus() === 'online') {
+              <span class="state-badge state-online">
+                <span class="status-dot online"></span> Opérationnelle
+              </span>
+            } @else if (apiStatus() === 'offline') {
+              <span class="state-badge state-offline">
+                <span class="status-dot"></span> Indisponible
+              </span>
+            } @else {
+              <span class="state-badge state-loading">Vérification…</span>
+            }
+          </div>
+
+          <h3>{{ serviceName() }}</h3>
+          <p class="card-description">
+            Endpoint de santé du serveur Express.
+          </p>
+
+          <div class="card-divider"></div>
+
+          <div class="detail-row">
+            <span>Adresse</span>
+            <code>127.0.0.1:3000</code>
+          </div>
+          <div class="detail-row">
+            <span>Endpoint</span>
+            <code>/api/health</code>
+          </div>
+
+          @if (errorMessage()) {
+            <p class="error-message" role="alert">{{ errorMessage() }}</p>
+          }
+        </article>
+
+        <article class="service-card secondary-card">
+          <div class="card-top">
+            <span class="service-icon frontend-icon">UI</span>
+            <span class="state-badge state-neutral">Interface active</span>
+          </div>
+          <h3>Frontend Angular</h3>
+          <p class="card-description">
+            Interface de supervision exécutée dans le navigateur.
+          </p>
+          <div class="card-divider"></div>
+          <div class="detail-row">
+            <span>Port de développement</span>
+            <code>4200</code>
+          </div>
+          <div class="detail-row">
+            <span>Connexion API</span>
+            <span class="detail-value">
+              {{ apiStatus() === 'online' ? 'Établie' : apiStatus() === 'loading' ? 'En cours…' : 'À vérifier' }}
+            </span>
+          </div>
+        </article>
+
+        <article class="service-card future-card">
+          <div class="card-top">
+            <span class="service-icon ai-icon">AI</span>
+            <span class="state-badge state-neutral">À intégrer</span>
+          </div>
+          <h3>Moteur IA local</h3>
+          <p class="card-description">
+            L’intégration du moteur IA sera ajoutée dans une prochaine étape.
+          </p>
+          <div class="card-divider"></div>
+          <div class="detail-row">
+            <span>Fournisseur prévu</span>
+            <span class="detail-value">Ollama</span>
+          </div>
+          <div class="detail-row">
+            <span>Statut</span>
+            <span class="detail-value">Non vérifié par l’interface</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="configuration">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">ENVIRONNEMENT</p>
+          <h2>Configuration actuelle</h2>
+        </div>
+      </div>
+
+      <div class="configuration-panel">
+        <div class="config-row">
+          <div class="config-symbol">⌘</div>
+          <div class="config-copy">
+            <strong>Architecture locale</strong>
+            <span>Angular · Node.js · Express</span>
+          </div>
+          <span class="config-indicator">En place</span>
+        </div>
+        <div class="config-row">
+          <div class="config-symbol">↔</div>
+          <div class="config-copy">
+            <strong>Communication frontend / backend</strong>
+            <span>Requête HTTP réelle vers l’endpoint de santé</span>
+          </div>
+          <span class="config-indicator" [class.config-error]="apiStatus() === 'offline'">
+            {{ apiStatus() === 'online' ? 'Connectée' : apiStatus() === 'loading' ? 'Vérification' : 'Indisponible' }}
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>ASTRON CORE <span class="footer-separator">·</span> Console locale</span>
+      <span>État affiché à partir des vérifications disponibles</span>
+    </footer>
+  </main>
+</div>

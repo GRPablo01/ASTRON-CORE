@@ -28,7 +28,7 @@
 |---:|---|---|---|
 | 0 | Cadrage et sécurité | Périmètre, objectifs, règles d’accès et critères de réussite | Clôturée — validation documentaire ; validations techniques en attente |
 | 1 | Fondations du dépôt | Structure, configuration, qualité du code et Git | À vérifier |
-| 2 | Interface et API de base | Dashboard Angular relié à Express | Partiellement validée |
+| 2 | Interface et API de base | Dashboard Angular relié à Express | En cours |
 | 3 | Contrats et communications | Types partagés, erreurs, événements et suivi des requêtes | En cours |
 | 4 | Persistance | Base de données, utilisateurs, conversations et tâches | En attente |
 | 5 | Moteur IA local | Ollama, modèle, prompts système et gestion des erreurs | En attente |
@@ -215,12 +215,12 @@ Ces points restent ouverts jusqu'à la production et à l'examen de preuves tech
 
 ## 2.1 API
 
-- [x] Endpoint de santé `/api/health` implémenté.
-- [x] Réponses JSON cohérentes et erreurs 404.
-- [x] CORS configuré.
-- [x] Helmet activé.
-- [x] Limite de taille des requêtes JSON.
-- [x] Tests backend associés exécutés avec succès.
+- [ ] Endpoint de santé `/api/health` implémenté.
+- [ ] Réponses JSON cohérentes et erreurs 404.
+- [ ] CORS configuré.
+- [ ] Helmet activé.
+- [ ] Limite de taille des requêtes JSON.
+- [ ] Tests backend associés exécutés avec succès.
 
 ## 2.2 Dashboard Angular
 
@@ -233,8 +233,8 @@ Ces points restent ouverts jusqu'à la production et à l'examen de preuves tech
 
 ## 2.3 Validation
 
-- [x] Compilation backend réussie.
-- [x] Tests backend réussis.
+- [ ] Compilation backend réussie.
+- [ ] Tests backend réussis.
 - [ ] Compiler le frontend.
 - [ ] Tester l’API avec `curl`.
 - [ ] Vérifier le tableau de bord dans le navigateur.
@@ -259,36 +259,36 @@ Ces points restent ouverts jusqu'à la production et à l'examen de preuves tech
 - [x] Identifiant unique de requête via `X-Request-Id`.
 - [x] Horodatage dans la réponse de santé.
 - [ ] Format commun des requêtes métier.
-- [ ] Schémas de validation à l’entrée de l’API.
-- [ ] Tests de validation des données incorrectes.
+- [x] Schémas de validation à l’entrée de l’API.
+- [x] Tests de validation des données incorrectes.
 
 ## 3.2 Définir les événements
 
-- [ ] `task.created`.
-- [ ] `task.started`.
-- [ ] `task.progress`.
-- [ ] `task.completed`.
-- [ ] `task.failed`.
-- [ ] Format commun des événements.
+- [x] `task.created`.
+- [x] `task.started`.
+- [x] `task.progress`.
+- [x] `task.completed`.
+- [x] `task.failed`.
+- [x] Format commun des événements.
 - [ ] Identifiant unique de tâche.
-- [ ] Horodatage des événements.
-- [ ] État et progression documentés.
-- [ ] Règles de transition entre états définies.
+- [x] Horodatage des événements.
+- [x] État et progression documentés.
+- [x] Règles de transition entre états définies.
 - [ ] Gestion des événements dupliqués ou dans le désordre documentée.
-- [ ] Aucun couplage obligatoire à Socket.IO avant la définition du contrat.
+- [x] Aucun couplage obligatoire à Socket.IO avant la définition du contrat.
 
 ### Critères de sortie de la phase 3
 
 - [ ] Contrats API documentés.
-- [ ] Schémas de validation définis et testés.
-- [ ] Contrats d’événements définis dans les contrats partagés.
-- [ ] États et progression des tâches documentés.
+- [x] Schémas de validation définis et testés.
+- [x] Contrats d’événements définis dans les contrats partagés.
+- [x] États et progression des tâches documentés.
 - [x] Identifiant de requête vérifié par les tests.
 - [x] Horodatage de santé présent.
 - [x] Tests backend, `typecheck` et `build` réussis sur l’état actuellement validé.
 - [ ] Nouvelle validation complète après ajout des éléments manquants.
 
-**Statut actuel : EN COURS.** Les contrats de base et les identifiants de requête sont implémentés, mais les schémas de validation et les contrats d’événements restent à réaliser.
+**Statut actuel : EN COURS.** Les schémas de validation des créations de tâches et le contrat événementiel de base sont définis et testés. L’application des transitions et des règles de progression, l’unicité des identifiants et le traitement des événements dupliqués ou désordonnés restent à finaliser.
 
 ---
 
